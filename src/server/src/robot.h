@@ -4,8 +4,8 @@
 class Robot{
 public:
     Robot();
-    void SetPosition(int pos);
-    int GetPosition() const;
+    void setPosition(int pos);
+    int getPosition() const;
 
 private:
     int m_Position;

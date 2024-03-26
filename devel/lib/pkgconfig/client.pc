@@ -1,8 +1,0 @@
-prefix=/home/ilya/work/ros/SberRoboticsLab/test/devel
-
-Name: client
-Description: Description of client
-Version: 0.0.0
-Cflags: -I/home/ilya/work/ros/SberRoboticsLab/test/devel/include
-Libs: -L${prefix}/lib 
-Requires: 

@@ -1,59 +1,24 @@
-#include "ros/ros.h"
-//#include "robot.h"
-#include "server/Position.h"
-#include "std_msgs/Int64.h"
+#include "pos_service_node.h"
 
-// *****************************************************************
-class Robot{
-public:
-    Robot();
-    void SetPosition(int pos);
-    int GetPosition() const;
-
-private:
-    int m_Position;
-};
-
-Robot::Robot()
-    : m_Position(0)
-{
+PositionService::PositionService(std::string service_name = "pos_service") {
+    m_serviceName = service_name;
 }
 
-void Robot::SetPosition(int pos) {
-    m_Position = pos;
+void PositionService::init() {
+    m_service = m_nodeHandle.advertiseService("pos_service", &PositionService::goToPosition, this);
+    ROS_INFO("PositionService initialized");
 }
 
-int Robot::GetPosition() const {
-    return m_Position;
-}
-// *****************************************************************
-
-bool add(server::Position::Request &req, server::Position::Response &res) {
-    res.X = req.X;
-    return true;
+void PositionService::setPosition(int pos) {
+    m_robot.setPosition(pos);
 }
 
-int main(int argc, char **argv) {
-    Robot robot;
-    ros::init(argc, argv, "server");
-    ros::NodeHandle nh;
+int PositionService::getPosition() {
+    return m_robot.getPosition();
+}
 
-    ros::Publisher current_pos_pub = nh.advertise<std_msgs::Int64>("current_pos", 10);
-    ros::Rate loop_rate(1);
-
-    // service
-    ros::ServiceServer service = nh.advertiseService("robot_pos", add);
-    ROS_INFO("Service ready");
-    
-    while (ros::ok()) {
-        std_msgs::Int64 msg;
-        msg.data = robot.GetPosition();
-        ROS_INFO("Current robot position: %ld", msg.data);
-        current_pos_pub.publish(msg);
-        ros::spinOnce();
-
-        loop_rate.sleep();
-    }
-
-    return 0;
+bool PositionService::goToPosition(server::Position::Request &req, server::Position::Response &res) {
+    setPosition(req.X);
+    res.X = getPosition();
+    return req.X == res.X;
 }

@@ -1,8 +1,0 @@
-prefix=/home/ilya/work/ros/SberRoboticsLab/test/install
-
-Name: client
-Description: Description of client
-Version: 0.0.0
-Cflags: -I${prefix}/include
-Libs: -L${prefix}/lib 
-Requires: 
