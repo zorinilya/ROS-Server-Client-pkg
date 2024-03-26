@@ -11,8 +11,11 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
-  message_generation
+  actionlib
+  actionlib_msgs
+#  message_generation
 )
+find_package(Boost REQUIRED COMPONENTS system)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -61,15 +64,15 @@ find_package(catkin REQUIRED COMPONENTS
  )
 
 ## Generate actions in the 'action' folder
-# add_action_files(
-#   FILES
-#   Action1.action
-#   Action2.action
-# )
+ add_action_files(
+   FILES
+   Position.action
+ )
 
 ## Generate added messages and services with any dependencies listed here
  generate_messages(
    DEPENDENCIES
+   actionlib_msgs
    std_msgs
  )
 
@@ -105,7 +108,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
   INCLUDE_DIRS include
 #  LIBRARIES server
-  CATKIN_DEPENDS roscpp std_msgs
+  CATKIN_DEPENDS actionlib_msgs std_msgs message_runtime
 #  DEPENDS system_lib
 )
 
@@ -117,6 +120,7 @@ catkin_package(
 ## Your package locations should be listed before other locations
 include_directories(
   ${catkin_INCLUDE_DIRS}
+  ${Boost_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
@@ -135,12 +139,11 @@ include_directories(
  add_executable(
   ${PROJECT_NAME}
   src/main.cpp
+  src/pos_action_service_node.cpp
   src/pos_pub_node.cpp
   src/pos_service_node.cpp
   src/robot.cpp
 )
- 
-# add_executable(pos_client_node src/pos_client_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -151,19 +154,12 @@ include_directories(
 ## Add cmake target dependencies of the executable
 ## same as for the library above
  add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-# add_dependencies(pos_service_node ${pos_service_node_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-# add_dependencies(pos_client_node ${pos_client_node_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(${PROJECT_NAME}
-   ${catkin_LIBRARIES}
+target_link_libraries(
+  ${PROJECT_NAME}
+  ${catkin_LIBRARIES}
 )
-#target_link_libraries(pos_service_node
-#   ${catkin_LIBRARIES}
-# )
-# target_link_libraries(pos_client_node
-#   ${catkin_LIBRARIES}
-# )
 
 #############
 ## Install ##

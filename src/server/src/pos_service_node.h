@@ -9,7 +9,7 @@ class PositionService
 {
 public:
     PositionService() = delete;
-    PositionService(std::string service_name);
+    PositionService(std::string service_name, Robot& robot);
     void init();
     void setPosition(int pos);
     int getPosition();
@@ -19,6 +19,6 @@ private:
     ros::NodeHandle m_nodeHandle;
     ros::ServiceServer m_service;
     std_msgs::Int64 m_position;
-    Robot m_robot;
+    std::shared_ptr<Robot> m_robot;
     std::string m_serviceName;
 };

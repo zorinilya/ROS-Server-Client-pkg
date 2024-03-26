@@ -11,7 +11,9 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
   server
-  message_generation
+  actionlib
+  actionlib_msgs
+#  message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -105,7 +107,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
   INCLUDE_DIRS include
 #  LIBRARIES client
-  CATKIN_DEPENDS roscpp std_msgs
+  CATKIN_DEPENDS actionlib_msgs std_msgs message_runtime
 #  DEPENDS system_lib
 )
 
@@ -135,6 +137,7 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
  add_executable(${PROJECT_NAME}
   src/main.cpp
+  src/pos_action_client_node.cpp
   src/pos_client_node.cpp
   src/pos_sub_node.cpp
  )
@@ -150,7 +153,8 @@ include_directories(
  add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
- target_link_libraries(${PROJECT_NAME}
+ target_link_libraries(
+   ${PROJECT_NAME}
    ${catkin_LIBRARIES}
  )
 

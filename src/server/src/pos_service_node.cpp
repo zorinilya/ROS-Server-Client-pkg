@@ -1,7 +1,9 @@
 #include "pos_service_node.h"
 
-PositionService::PositionService(std::string service_name = "pos_service") {
-    m_serviceName = service_name;
+PositionService::PositionService(std::string service_name, Robot& robot)
+    : m_serviceName(service_name)
+{
+    m_robot = std::make_shared<Robot>(robot);
 }
 
 void PositionService::init() {
@@ -10,11 +12,11 @@ void PositionService::init() {
 }
 
 void PositionService::setPosition(int pos) {
-    m_robot.setPosition(pos);
+    m_robot->setPosition(pos);
 }
 
 int PositionService::getPosition() {
-    return m_robot.getPosition();
+    return m_robot->getPosition();
 }
 
 bool PositionService::goToPosition(server::Position::Request &req, server::Position::Response &res) {
