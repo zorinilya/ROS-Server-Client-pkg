@@ -1,7 +1,6 @@
 //#include "server.h"
 #include "pos_pub_node.h"
 #include "pos_service_node.h"
-#include "pos_client_node.h"
 
 
 int main(int argc, char **argv) {
@@ -10,11 +9,9 @@ int main(int argc, char **argv) {
     ros::Rate loop_rate(10);
     PositionPublisher posPubNode;
     PositionService posService("pos_service");
-    PositionClient posClient("pos_service");
 
     posPubNode.init();
     posService.init();
-    posClient.init();
     ROS_INFO("Start server");
     
     while (ros::ok()) {

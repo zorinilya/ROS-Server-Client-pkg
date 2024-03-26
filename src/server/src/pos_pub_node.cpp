@@ -16,6 +16,6 @@ int64_t PositionPublisher::getPosition() {
 
 void PositionPublisher::publishPosition() {
     m_position.data = getPosition();
-    ROS_INFO("Current robot position: %ld", m_position.data);
+    ROS_INFO("Server: current robot position: %ld", m_position.data);
     m_posPub.publish(m_position);
 }
