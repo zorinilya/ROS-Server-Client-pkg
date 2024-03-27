@@ -8,9 +8,8 @@
 class PositionService
 {
 public:
-    PositionService() = delete;
-    PositionService(std::string service_name, Robot& robot);
-    void init();
+    PositionService(const std::string& service_name, Robot& robot);
+
     void setPosition(int pos);
     int getPosition();
     bool goToPosition(server::Position::Request &req, server::Position::Response &res);

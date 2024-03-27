@@ -1,4 +1,5 @@
 #include "robot.h"
+#include <ros/ros.h>
 #include <cstdint>
 
 Robot::Robot()

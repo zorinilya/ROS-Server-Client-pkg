@@ -5,8 +5,7 @@
 class PositionSubscriber
 {
 public:
-    PositionSubscriber();
-    void init();
+    PositionSubscriber(const std::string& topic_name);
     void printPosition(std_msgs::Int64 current_pos);
 
 private:

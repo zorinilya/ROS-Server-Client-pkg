@@ -1,12 +1,11 @@
 #include "pos_client_node.h"
 
 
-PositionClient::PositionClient(std::string service_name = "pos_service") {
-    m_serviceName = service_name;
-}
-
-void PositionClient::init() {
-    m_client = m_nodeHandle.serviceClient<server::Position>(m_serviceName);
+PositionClient::PositionClient(const std::string& service_name)
+    : m_serviceName(service_name)
+    , m_client(m_nodeHandle.serviceClient<server::Position>(m_serviceName))
+{
+    ROS_INFO("PositionClient initialized");
 }
 
 bool PositionClient::sendRequest(int pos) {

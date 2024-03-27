@@ -7,14 +7,12 @@
 int main(int argc, char **argv) {
     ros::init(argc, argv, "server");
     ros::Time::init();
-    ros::Rate loop_rate(10);
+    ros::Rate loop_rate(1);
     Robot robot_A;
-    PositionAction posAction("pos_action");
-    PositionPublisher posPubNode;
+    PositionAction posAction("pos_action", robot_A);
+    PositionPublisher posPubNode("current_pos_topic", robot_A);
     PositionService posService("pos_service", robot_A);
 
-    posPubNode.init();
-    posService.init();
     ROS_INFO("Start server");
     
     while (ros::ok()) {

@@ -1,13 +1,10 @@
 #include "pos_service_node.h"
 
-PositionService::PositionService(std::string service_name, Robot& robot)
-    : m_serviceName(service_name)
+PositionService::PositionService(const std::string& service_name, Robot& robot)
+    : m_service(m_nodeHandle.advertiseService(service_name, &PositionService::goToPosition, this))
+    , m_serviceName(service_name)
 {
     m_robot = std::make_shared<Robot>(robot);
-}
-
-void PositionService::init() {
-    m_service = m_nodeHandle.advertiseService("pos_service", &PositionService::goToPosition, this);
     ROS_INFO("PositionService initialized");
 }
 

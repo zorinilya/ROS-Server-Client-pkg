@@ -6,14 +6,16 @@
 int main(int argc, char **argv) {
     ros::init(argc, argv, "client");
     ros::Time::init();
-    PositionSubscriber posSub;
+    PositionSubscriber posSub("current_pos_topic");
+//    PositionClient posClient("pos_service");
     PositionActionClient posActionClient("pos_action");
-    PositionClient posClient("pos_service");
 
-    posSub.init();
-    posClient.init();
     ROS_INFO("Start client");
     
+//    while (ros::ok) {
+        posActionClient.sendGoal(100);
+//        loop_rate.sleep();
+//    }
     ros::spin();
 
     return 0;

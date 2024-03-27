@@ -1,9 +1,9 @@
 #include "pos_action_client_node.h"
 
 
-PositionActionClient::PositionActionClient(std::string name)
-    : m_actionService(name, true),
-        m_actionName(name)
+PositionActionClient::PositionActionClient(const std::string& name)
+    : m_actionService(name, true)
+    , m_actionName(name)
 {
     ROS_INFO("Waiting for action server to start.");
     // wait for the action server to start
@@ -12,6 +12,7 @@ PositionActionClient::PositionActionClient(std::string name)
 }
 
 void PositionActionClient::sendGoal(int64_t goal) {
+    m_goal.order = goal;
     m_actionService.sendGoal(m_goal);
     bool finished_before_timeout = m_actionService.waitForResult(ros::Duration(30.0));
     if (finished_before_timeout)

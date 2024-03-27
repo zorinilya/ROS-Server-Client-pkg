@@ -7,9 +7,7 @@
 class PositionClient
 {
 public:
-    PositionClient() = delete;
-    PositionClient(std::string service_name);
-    void init();
+    PositionClient(const std::string& service_name);
     bool sendRequest(int pos);
 
 private:

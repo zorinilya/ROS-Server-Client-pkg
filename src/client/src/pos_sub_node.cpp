@@ -1,12 +1,9 @@
 #include "pos_sub_node.h"
 
 
-PositionSubscriber::PositionSubscriber()
+PositionSubscriber::PositionSubscriber(const std::string& topic_name)
+    : m_posSub(m_nodeHandle.subscribe(topic_name, 10, &PositionSubscriber::printPosition, this))
 {
-}
-    
-void PositionSubscriber::init() {
-    m_posSub = m_nodeHandle.subscribe("current_pos_topic", 10, &PositionSubscriber::printPosition, this);
     ROS_INFO("PositionSubscriber initialized");
 }
 
