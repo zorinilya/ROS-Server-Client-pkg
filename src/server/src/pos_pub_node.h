@@ -1,3 +1,6 @@
+#ifndef POSITIONPUBLISHER
+#define POSITIONPUBLISHER
+
 #include "ros/ros.h"
 #include "robot.h"
 #include "std_msgs/Int64.h"
@@ -18,3 +21,4 @@ private:
     std_msgs::Int64 m_position;
     std::shared_ptr<Robot> m_robot;
 };
+#endif // POSITIONPUBLISHER

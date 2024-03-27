@@ -143,6 +143,7 @@ include_directories(
   src/pos_pub_node.cpp
   src/pos_service_node.cpp
   src/robot.cpp
+  src/server.cpp
 )
 
 ## Rename C++ executable without prefix

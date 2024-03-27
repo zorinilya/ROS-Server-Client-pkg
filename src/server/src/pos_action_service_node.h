@@ -1,3 +1,6 @@
+#ifndef POSITIONACTION
+#define POSITIONACTION
+
 #include <ros/ros.h>
 #include <actionlib/server/simple_action_server.h>
 #include <server/PositionAction.h>
@@ -18,3 +21,4 @@ private:
    std::shared_ptr<Robot> m_robot;
    std::string m_actionName;
 };
+#endif // POSITIONACTION

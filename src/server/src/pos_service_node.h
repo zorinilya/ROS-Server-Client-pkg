@@ -1,3 +1,6 @@
+#ifndef POSITIONSERVICE
+#define POSITIONSERVICE
+
 #include "ros/ros.h"
 #include "robot.h"
 #include "server/Position.h"
@@ -21,3 +24,4 @@ private:
     std::shared_ptr<Robot> m_robot;
     std::string m_serviceName;
 };
+#endif // POSITIONSERVICE
