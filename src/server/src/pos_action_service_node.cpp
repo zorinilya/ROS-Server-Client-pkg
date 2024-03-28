@@ -1,4 +1,4 @@
-#include "pos_action_service_node.h"
+#include "server/pos_action_service_node.h"
 
 PositionAction::PositionAction(const std::string& name, Robot& robot)
    : m_actionService(m_nodeHandle, name, boost::bind(&PositionAction::executeCB, this, _1), false),

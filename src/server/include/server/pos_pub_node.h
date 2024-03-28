@@ -2,7 +2,7 @@
 #define POSITIONPUBLISHER
 
 #include "ros/ros.h"
-#include "robot.h"
+#include "server/robot.h"
 #include "std_msgs/Int64.h"
 
 

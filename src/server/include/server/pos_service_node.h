@@ -2,7 +2,7 @@
 #define POSITIONSERVICE
 
 #include "ros/ros.h"
-#include "robot.h"
+#include "server/robot.h"
 #include "server/Position.h"
 #include "std_msgs/Int64.h"
 #include <string>

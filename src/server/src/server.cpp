@@ -1,4 +1,4 @@
-#include "server.h"
+#include "server/server.h"
 
 Server::Server(Robot& robot)
     : m_posActionService("pos_action", robot)

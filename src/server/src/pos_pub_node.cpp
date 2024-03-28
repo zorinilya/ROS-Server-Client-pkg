@@ -1,4 +1,4 @@
-#include "pos_pub_node.h"
+#include "server/pos_pub_node.h"
 
 
 PositionPublisher::PositionPublisher(const std::string& topic_name, Robot& robot)

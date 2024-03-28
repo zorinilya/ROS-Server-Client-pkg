@@ -1,7 +1,7 @@
-#include "server.h"
-#include "pos_action_service_node.h"
-#include "pos_pub_node.h"
-#include "pos_service_node.h"
+#include "server/server.h"
+#include "server/pos_action_service_node.h"
+#include "server/pos_pub_node.h"
+#include "server/pos_service_node.h"
 
 
 int main(int argc, char **argv) {

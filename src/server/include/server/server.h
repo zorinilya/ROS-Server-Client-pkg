@@ -1,9 +1,9 @@
 #ifndef SERVER
 #define SERVER
 
-#include "pos_action_service_node.h"
-#include "pos_service_node.h"
-#include "pos_pub_node.h"
+#include "server/pos_action_service_node.h"
+#include "server/pos_service_node.h"
+#include "server/pos_pub_node.h"
 
 class Server
 {
